@@ -19,7 +19,7 @@ jobs:
           path: ~/.npm
           key: js-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        uses: npm ci
+        run: npm ci
       - name: Print
         run: |
           echo "Env var: $NAME"
