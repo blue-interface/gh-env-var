@@ -23,6 +23,7 @@ jobs:
       - name: Print
         run: |
           echo "Env var: $NAME"
+          echo "Print secret: $SECRET_VALUE"
   deploy:
     env:
       NAME: override value
