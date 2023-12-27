@@ -21,7 +21,8 @@ jobs:
       - name: Install dependencies
         uses: npm ci
       - name: Print
-        run: echo "Env var: $NAME"
+        run: |
+          echo "Env var: $NAME"
   deploy:
     env:
       NAME: override value
