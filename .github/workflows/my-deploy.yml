@@ -1,0 +1,34 @@
+name: practice workflow
+on:
+  push:
+    branches:
+      - main
+      - develop
+env:
+  NAME: Rich
+  SECRET_VALUE: ${{ secrets.SECRET_VALUE}}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache artifacts
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: js-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        uses: npm ci
+      - name: Print
+        run: echo "Env var: $NAME"
+  deploy:
+    env:
+      NAME: override value
+      NEW_NAME: shhh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: |
+          echo "Env var in deploy: $NAME"
+          echo "New name in deploy: ${{ env.NEW_NAME }}"
